@@ -3,21 +3,18 @@ using System.Collections;
 
 public class SyncManager : Photon.MonoBehaviour
 {
-    ThirdPersonController controllerScript;
-    Player playerScript;
+    private ThirdPersonController controllerScript;
+    private Player player;
 
     void Awake()
     {
         controllerScript = GetComponent<ThirdPersonController>();
-        playerScript = GetComponent<Player>();
+        player = GetComponent<Player>();
 
-         if (photonView.isMine)
-        {
+        if (photonView.isMine) {
             //MINE: local player, simply enable the local scripts
             controllerScript.enabled = true;
-        }
-        else
-        {
+        } else {
             controllerScript.enabled = true;
             controllerScript.isControllable = false;
         }
@@ -27,19 +24,18 @@ public class SyncManager : Photon.MonoBehaviour
 
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.isWriting)
-        {
+        if (stream.isWriting) {
             //We own this player: send the others our data
             stream.SendNext((int)controllerScript._characterState);
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
-        }
-        else
-        {
+            stream.SendNext(player.message);
+        } else {
             //Network player, receive data
             controllerScript._characterState = (CharacterState)(int)stream.ReceiveNext();
             correctPlayerPos = (Vector3)stream.ReceiveNext();
             correctPlayerRot = (Quaternion)stream.ReceiveNext();
+            player.message = (string)stream.ReceiveNext();
         }
     }
 
@@ -48,8 +44,7 @@ public class SyncManager : Photon.MonoBehaviour
 
     void Update()
     {
-        if (!photonView.isMine)
-        {
+        if (!photonView.isMine) {
             //Update remote player (smooth this, this looks good, at the cost of some accuracy)
             transform.position = Vector3.Lerp(transform.position, correctPlayerPos, Time.deltaTime * 5);
             transform.rotation = Quaternion.Lerp(transform.rotation, correctPlayerRot, Time.deltaTime * 5);
