@@ -15,7 +15,9 @@ public class Game : MonoBehaviour {
     public static List<Team> teams = new List<Team>();
     public static List<Player> players = new List<Player>();
 
+    public bool displayGUI = true;
     public Rect windowRect = new Rect(10, 10, 300, 200);
+
 
 	// Use this for initialization
 	void Start () {
@@ -28,7 +30,8 @@ public class Game : MonoBehaviour {
 	}
 
     void OnGUI () {
-        windowRect = GUILayout.Window(1, windowRect, displayWindow, "Game Infos");
+        if (displayGUI)
+            windowRect = GUILayout.Window(1, windowRect, displayWindow, "Game Infos");
     }
 
     void displayWindow(int windowID) {
