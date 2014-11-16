@@ -10,7 +10,6 @@ public class ActionController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         photonView = GetComponent<PhotonView>();
-        Debug.Log(PhotonNetwork.player);
 	}
 
 	// Update is called once per frame

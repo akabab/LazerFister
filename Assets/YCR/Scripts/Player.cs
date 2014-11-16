@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ExitGames.Client.Photon;
 
 public class Player : MonoBehaviour {
 
@@ -9,13 +10,13 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Debug.Log("Hello I joined");
+    }
 
-	}
+    // Update is called once per frame
+    void Update () {
 
-	// Update is called once per frame
-	void Update () {
-
-	}
+    }
 
     /*GETTERS*/
 

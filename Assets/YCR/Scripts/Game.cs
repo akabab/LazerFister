@@ -25,6 +25,10 @@ public class Game : MonoBehaviour {
 
 	}
 
+    void OnJoinedRoom() {
+        Debug.Log("Hello");
+    }
+
     public static void addPlayer(Player newPlayer) {
         players.Add(newPlayer);
     }
