@@ -15,6 +15,8 @@ public class Game : MonoBehaviour {
     public static List<Team> teams = new List<Team>();
     public static List<Player> players = new List<Player>();
 
+    public Rect windowRect = new Rect(10, 10, 300, 200);
+
 	// Use this for initialization
 	void Start () {
 
@@ -26,21 +28,23 @@ public class Game : MonoBehaviour {
 	}
 
     void OnGUI () {
-        if (GUILayout.Button("List Players")) {
-            listPlayers();
+        windowRect = GUILayout.Window(1, windowRect, displayWindow, "Game Infos");
+    }
+
+    void displayWindow(int windowID) {
+        GUI.DragWindow(new Rect(0, 0, 10000, 20));
+        GUILayout.Label("Active Players");
+        foreach (Player player in players) {
+            GUILayout.Label(player.id + ": " + player.name);
         }
     }
 
-    /*PHOTON*/
-
-    void OnJoinedRoom () {
-        Debug.Log("Hello");
+    public static void addPlayer(Player player) {
+        players.Add(player);
     }
 
-
-
-    public static void addPlayer(Player newPlayer) {
-        players.Add(newPlayer);
+    public static void removePlayer(Player player) {
+        players.Remove(player);
     }
 
     public static Player getPlayerById(int id) {
