@@ -25,9 +25,19 @@ public class Game : MonoBehaviour {
 
 	}
 
-    void OnJoinedRoom() {
+    void OnGUI () {
+        if (GUILayout.Button("List Players")) {
+            listPlayers();
+        }
+    }
+
+    /*PHOTON*/
+
+    void OnJoinedRoom () {
         Debug.Log("Hello");
     }
+
+
 
     public static void addPlayer(Player newPlayer) {
         players.Add(newPlayer);
