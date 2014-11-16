@@ -9,7 +9,7 @@ public class Player : MonoBehaviour {
 	public Team team;
 
 	static int winId = -1;
-	static Rect windowRect = new Rect(50, 50, 200, 300);
+	static Rect windowRect = new Rect(10, 250, 150, 100);
 
 	// Use this for initialization
 	void Start () {
