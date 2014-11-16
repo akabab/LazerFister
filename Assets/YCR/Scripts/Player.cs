@@ -47,6 +47,7 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnLeftRoom () {
+		Debug.Log("BYEBYE");
 		if (Game.players.Contains(this)) Debug.Log("yes");
 		Debug.Log("remove: " + Game.removePlayer(this));
 	}
