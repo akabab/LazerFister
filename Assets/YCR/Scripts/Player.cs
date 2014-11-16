@@ -31,6 +31,8 @@ public class Player : MonoBehaviour {
 	/*PLAYER INFOS INTERFACE*/
 	void OnMouseUp () {
 		winId = winId != this.id ? this.id : -1;
+		if (Game.players.Contains(this)) Debug.Log("yes");
+		Debug.Log("remove: " + Game.removePlayer(this));
 	}
 
 	void OnGUI () {
@@ -45,7 +47,8 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnLeftRoom () {
-		Game.removePlayer(this);
+		if (Game.players.Contains(this)) Debug.Log("yes");
+		Debug.Log("remove: " + Game.removePlayer(this));
 	}
 
 	/*GETTERS*/

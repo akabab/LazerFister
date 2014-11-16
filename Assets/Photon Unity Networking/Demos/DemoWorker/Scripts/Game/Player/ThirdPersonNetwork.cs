@@ -5,11 +5,13 @@ public class ThirdPersonNetwork : Photon.MonoBehaviour
 {
     ThirdPersonCamera cameraScript;
     ThirdPersonController controllerScript;
+    Player playerScript;
 
     void Awake()
     {
         cameraScript = GetComponent<ThirdPersonCamera>();
         controllerScript = GetComponent<ThirdPersonController>();
+        playerScript = GetComponent<Player>();
 
          if (photonView.isMine)
         {
@@ -18,7 +20,7 @@ public class ThirdPersonNetwork : Photon.MonoBehaviour
             controllerScript.enabled = true;
         }
         else
-        {           
+        {
             cameraScript.enabled = false;
 
             controllerScript.enabled = true;
@@ -35,7 +37,7 @@ public class ThirdPersonNetwork : Photon.MonoBehaviour
             //We own this player: send the others our data
             stream.SendNext((int)controllerScript._characterState);
             stream.SendNext(transform.position);
-            stream.SendNext(transform.rotation); 
+            stream.SendNext(transform.rotation);
         }
         else
         {

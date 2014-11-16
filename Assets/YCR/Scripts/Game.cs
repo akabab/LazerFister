@@ -31,7 +31,7 @@ public class Game : MonoBehaviour {
 
     void OnGUI () {
         if (displayGUI)
-            windowRect = GUILayout.Window(1, windowRect, displayWindow, "Game Infos");
+            windowRect = GUILayout.Window(2, windowRect, displayWindow, "Game Infos");
     }
 
     void displayWindow(int windowID) {
@@ -46,8 +46,8 @@ public class Game : MonoBehaviour {
         players.Add(player);
     }
 
-    public static void removePlayer(Player player) {
-        players.Remove(player);
+    public static bool removePlayer(Player player) {
+        return players.Remove(player);
     }
 
     public static Player getPlayerById(int id) {
