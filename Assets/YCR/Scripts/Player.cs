@@ -44,6 +44,10 @@ public class Player : MonoBehaviour {
 		GUILayout.Label("Name: " + this.name);
 	}
 
+	void OnLeftRoom () {
+		Game.removePlayer(this);
+	}
+
 	/*GETTERS*/
 	public int getId() {
 		return this.id;
