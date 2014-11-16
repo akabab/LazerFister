@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
 	public int id;
 	public string name;
 	public Team team;
+	public Color color;
 
 	static int winId = -1;
 	static Rect windowRect = new Rect(10, 250, 150, 100);
@@ -16,8 +17,9 @@ public class Player : MonoBehaviour {
 
 		// --tmp--
 		Debug.Log("Hello I joined");
-		this.id = (int) Mathf.Round(Random.value * 10000);
-		this.name = "anonymous";
+		this.setId((int) Mathf.Round(Random.value * 10000));
+		this.setName("anonymous" + this.getId());
+		this.setColor(new Color(Random.value, Random.value, Random.value));
 		// -------
 
 		Game.addPlayer(this);
@@ -68,5 +70,12 @@ public class Player : MonoBehaviour {
 
 	public void setTeam(Team newTeam) {
 		this.team = newTeam;
+	}
+
+	public Color setColor(Color color) {
+		this.transform.Find("robot_head").renderer.materials[1].color = color;
+		this.transform.Find("robot_body").renderer.materials[1].color = color;
+		this.transform.Find("trail").renderer.material.color = color;
+		return this.color = color;
 	}
 }
