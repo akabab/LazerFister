@@ -26,7 +26,7 @@ public class ThirdPersonController : MonoBehaviour
 
     private Animation _animation;
 
-  
+
 
     public CharacterState _characterState;
 
@@ -101,7 +101,7 @@ public class ThirdPersonController : MonoBehaviour
     public AnimationClip idleAnimation;
     public AnimationClip walkAnimation;
     public AnimationClip runAnimation;
-    public AnimationClip jumpPoseAnimation;	
+    public AnimationClip jumpPoseAnimation;
         */
         if (!idleAnimation)
         {
@@ -133,7 +133,7 @@ public class ThirdPersonController : MonoBehaviour
         Transform cameraTransform = Camera.main.transform;
         bool grounded = IsGrounded();
 
-        // Forward vector relative to the camera along the x-z plane	
+        // Forward vector relative to the camera along the x-z plane
         Vector3 forward = cameraTransform.TransformDirection(Vector3.forward);
         forward.y = 0;
         forward = forward.normalized;
@@ -209,7 +209,7 @@ public class ThirdPersonController : MonoBehaviour
                 targetSpeed *= walkSpeed;
                 _characterState = CharacterState.Walking;
             }
-        
+
             moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth);
 
             // Reset walk time start when we slow down
@@ -240,7 +240,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             // Jump
             // - Only when pressing the button down
-            // - With a timeout so you can press the button slightly before landing		
+            // - With a timeout so you can press the button slightly before landing
             if (canJump && Time.time < lastJumpButtonTime + jumpTimeout)
             {
                 verticalSpeed = CalculateJumpVerticalSpeed(jumpHeight);
@@ -254,7 +254,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             // Apply gravity
             //bool jumpButton = Input.GetButton("Jump");
-            
+
             // When we reach the apex of the jump we send out a message
             if (jumping && !jumpingReachedApex && verticalSpeed <= 0.0f)
             {
@@ -271,7 +271,7 @@ public class ThirdPersonController : MonoBehaviour
 
     float CalculateJumpVerticalSpeed(float targetJumpHeight)
     {
-        // From the jump height and gravity we deduce the upwards speed 
+        // From the jump height and gravity we deduce the upwards speed
         // for the character to reach at the apex.
         return Mathf.Sqrt(2 * targetJumpHeight * gravity);
     }
@@ -290,7 +290,7 @@ public class ThirdPersonController : MonoBehaviour
     Vector3 velocity = Vector3.zero;
 
     void Update()
-    {        
+    {
         if (isControllable)
         {
             if (Input.GetButtonDown("Jump"))
