@@ -19,7 +19,7 @@ public class Player : MonoBehaviour {
 		Debug.Log("Hello I joined");
 		this.setId((int) Mathf.Round(Random.value * 10000));
 		this.setName("anonymous" + this.getId());
-		this.setColor(new Color(Random.value, Random.value, Random.value));
+		this.setColor(HSBColor.ToColor(new HSBColor(Random.value, 1f, 1f)));
 		// -------
 
 		Game.addPlayer(this);
