@@ -89,6 +89,7 @@ public class Player : Photon.MonoBehaviour {
 		this.transform.Find("robot_head").renderer.materials[1].color = color;
 		this.transform.Find("robot_body").renderer.materials[1].color = color;
 		this.transform.Find("trail").renderer.material.color = color;
+		this.transform.Find("pointLight").light.color = color;
 		return this.color = color;
 	}
 }
